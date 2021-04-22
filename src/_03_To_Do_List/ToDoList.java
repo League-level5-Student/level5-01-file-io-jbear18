@@ -3,9 +3,11 @@ package _03_To_Do_List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -86,13 +88,40 @@ tasks.add(JOptionPane.showInputDialog("Enter a task:"));
 		for(int i=0; i< tasks.size(); i++) {
 			options[i] = tasks.get(i);
 		}
-		int remove = JOptionPane.showInputDialog("What task would you like to remove?","task removal", JOptionPane.DEFAULT_OPTION,  JOptionPane.INFORMATION_MESSAGE, null, options,options[options.length-1] );
+		int remove = JOptionPane.showOptionDialog(null, "What task would you like to remove?","task removal", JOptionPane.DEFAULT_OPTION,  JOptionPane.INFORMATION_MESSAGE, null, options,options[options.length-1] );
 		tasks.remove(remove);
 	}
 	else if(e.getSource()== (saveList)) {
+		try {
+			filewriter = new FileWriter("src/_03_To_Do_List/message.txt");
+			for(int i=0; i < tasks.size(); i++) {
+				if(i==tasks.size()-1) {
+					filewriter.write(tasks.get(i));
+				}else {
+					filewriter.write(tasks.get(i)+ "\n");
+				}
+			}
+			filewriter.close();
+			
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 	}
 	else if(e.getSource()==(loadList)) {
+		tasks= new ArrayList<String>();
+		JFileChooser j = new JFileChooser();
+		int returnvalue = j.showOpenDialog(null);
+		if(returnvalue == JFileChooser.APPROVE_OPTION) {
+			String fileName = j.getSelectedFile().getAbsolutePath();
+			try {
+				
+			}catch{
+				
+			}catch{
+				
+			}
+		}
 		
 	}
 	}
