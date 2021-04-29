@@ -2,6 +2,9 @@ package _03_To_Do_List;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -115,11 +118,17 @@ tasks.add(JOptionPane.showInputDialog("Enter a task:"));
 		if(returnvalue == JFileChooser.APPROVE_OPTION) {
 			String fileName = j.getSelectedFile().getAbsolutePath();
 			try {
-				
-			}catch{
-				
-			}catch{
-				
+				BufferedReader br = new BufferedReader(new FileReader(fileName));
+				String line = br.readLine();
+				while(line != null) {
+					tasks.add(line);
+					line = br.readLine();
+				}
+			br.close();
+			}catch(FileNotFoundException e1){
+				e1.printStackTrace();
+			}catch(IOException e2){
+				e2.printStackTrace();
 			}
 		}
 		
