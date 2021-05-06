@@ -1,12 +1,14 @@
 package _05_Serialization;
 
+import java.io.Serializable;
+
 /*
  * Complete this class so that it can be serialized.
  */
-public class SaveData {
-	private static final long serialzationUID= 0;
+public class SaveData implements Serializable{
 	public final String name;
 	public final int age;
+	public static final long serialVersionUID = -2349274L;
 
 	public SaveData(String name, int age) {
 		this.name = name;
